@@ -1,0 +1,23 @@
+[
+  {
+    "slug": "cve-2026-33890-mytube-passkey-privesc",
+    "title": "CVE-2026-33890 — Unauthenticated Admin Privilege Escalation via Passkey Registration",
+    "date": "2026-04-14",
+    "tags": ["cve", "web", "privesc"],
+    "excerpt": "MyTube's WebAuthn passkey registration endpoints are exposed without authentication. An attacker can register an arbitrary passkey and receive a full admin token — zero credentials required."
+  },
+  {
+    "slug": "cve-2026-33735-mytube-access-control-bypass",
+    "title": "CVE-2026-33735 — Improper Access Control Allows Complete Application Takeover",
+    "date": "2026-04-14",
+    "tags": ["cve", "web"],
+    "excerpt": "A flawed string-matching access control check in MyTube's middleware can be bypassed by appending a query parameter, allowing a visitor to fully replace the application's SQLite database."
+  },
+  {
+    "slug": "cve-2026-33935-mytube-account-lockout",
+    "title": "CVE-2026-33935 — Unauthenticated Account Lockout via Shared Login Attempt State",
+    "date": "2026-04-14",
+    "tags": ["cve", "web"],
+    "excerpt": "All three of MyTube's password verification endpoints share a single global login attempt counter. Any unauthenticated attacker can trigger a rolling 24-hour DoS against all password-based auth."
+  }
+]
