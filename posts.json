@@ -1,5 +1,26 @@
 [
   {
+    "slug": "htb-ctf-web-htb-proxy",
+    "title": "HTB HTB Proxy — URL Encoding Bypass + Command Injection",
+    "date": "2026-04-15",
+    "tags": ["ctf", "web", "htb"],
+    "excerpt": "A Go reverse proxy blocks access to a vulnerable Node.js route by matching the lowercased URL. URL-encoding one character bypasses the filter while Express still routes the request, enabling OS command injection via an unsanitized ip wrapper."
+  },
+  {
+    "slug": "htb-ctf-web-jailbreak",
+    "title": "HTB Jailbreak — XXE via Firmware Update XML",
+    "date": "2026-04-15",
+    "tags": ["ctf", "web", "htb"],
+    "excerpt": "The firmware update endpoint parses XML without disabling external entities. Injecting a SYSTEM entity pointing to /flag.txt and fitting it inside the expected FirmwareUpdateConfig schema leaks the file contents."
+  },
+  {
+    "slug": "htb-ctf-web-flag-command",
+    "title": "HTB Flag Command — Hidden Secret Command via JS Debug",
+    "date": "2026-04-15",
+    "tags": ["ctf", "web", "htb"],
+    "excerpt": "The game's CheckMessage function accepts commands from a secret key in the availableOptions object. The key's value is fully exposed in client-side JavaScript — find it with DevTools and send it to get the flag."
+  },
+  {
     "slug": "cve-2026-33890-mytube-passkey-privesc",
     "title": "CVE-2026-33890 — Unauthenticated Admin Privilege Escalation via Passkey Registration",
     "date": "2026-04-14",
@@ -19,5 +40,96 @@
     "date": "2026-04-14",
     "tags": ["cve", "web"],
     "excerpt": "All three of MyTube's password verification endpoints share a single global login attempt counter. Any unauthenticated attacker can trigger a rolling 24-hour DoS against all password-based auth."
+  },
+  {
+    "slug": "htb-ctf-pwn-getting-started",
+    "title": "HTB Getting Started — Stack Overwrite",
+    "date": "2026-04-15",
+    "tags": ["ctf", "pwn", "htb"],
+    "excerpt": "An intro pwn challenge that visualizes the stack for you. Calculate the 40-byte offset from the buffer to the deadbeef target and overwrite it with 0x1337babe."
+  },
+  {
+    "slug": "htb-ctf-pwn-regularity",
+    "title": "HTB Regularity — Shellcode Injection via jmp rsi",
+    "date": "2026-04-14",
+    "tags": ["ctf", "pwn", "htb"],
+    "excerpt": "A no-libc assembly binary with a buffer overflow in a custom read function. RSI points to our buffer on return, so we overwrite the return address with a jmp rsi gadget and land in shellcode."
+  },
+  {
+    "slug": "htb-ctf-pwn-labyrinth",
+    "title": "HTB Labyrinth — Ret2Win with Stack Alignment",
+    "date": "2026-04-15",
+    "tags": ["ctf", "pwn", "htb"],
+    "excerpt": "A classic ret2win: enter the correct door to trigger a buffer overflow, overwrite the return address to escape_plan, and align the stack with a ret gadget to capture the flag."
+  },
+  {
+    "slug": "htb-ctf-rev-apkey",
+    "title": "HTB APKey — Android APK RE with Frida Hooking",
+    "date": "2026-04-22",
+    "tags": ["ctf", "rev", "mobile", "htb"],
+    "excerpt": "An obfuscated Android APK hides a decryption routine behind a hashed-password login. Patching the target SDK with apktool to install the app, then using a two-line Frida script to call the decryption function directly bypasses the check entirely."
+  },
+  {
+    "slug": "htb-ctf-rev-bincrypt-breaker",
+    "title": "HTB BinCrypt Breaker — XOR Decrypt and Reverse the Hidden Binary",
+    "date": "2026-04-22",
+    "tags": ["ctf", "rev", "htb"],
+    "excerpt": "A checker binary XORs file.bin with 0xab to produce a valid ELF, but its open() call is broken by design. Replicating the XOR in Python yields the hidden binary, whose flag validator is reversed by undoing 8 rounds of character shuffling and targeted XOR operations."
+  },
+  {
+    "slug": "htb-ctf-rev-coffee-invocation",
+    "title": "HTB Coffee Invocation — JNI Dynamic Class Loading with Obfuscated Verification",
+    "date": "2026-04-22",
+    "tags": ["ctf", "rev", "htb"],
+    "excerpt": "A native binary dynamically loads two Java classes via JNI and runs them against the input. The first class compares characters through tampered byte and short conversion tables; reversing both tables recovers the expected input characters."
+  },
+  {
+    "slug": "htb-ctf-rev-virtuallymad",
+    "title": "HTB VirtuallyMad — Custom VM Reverse Engineering",
+    "date": "2026-04-22",
+    "tags": ["ctf", "rev", "htb"],
+    "excerpt": "A binary implements a tiny VM with MOV, ADD, and SUB opcodes over four registers. The win condition requires specific register values achieved in exactly 5 instructions — craft the opcode string and the VM prints the flag."
+  },
+  {
+    "slug": "htb-ctf-rev-wayback",
+    "title": "HTB Wayback — Timestamp-Seeded RNG Brute Force",
+    "date": "2026-04-22",
+    "tags": ["ctf", "rev", "htb"],
+    "excerpt": "A C++ password generator seeds srand() with a formula derived from the current date and time. Knowing the approximate generation date, we replicate the seed formula in Python via ctypes, brute-force all second-level timestamps, and decrypt the AES-CBC flag."
+  },
+  {
+    "slug": "bsidestlv2025-web-avengersquerylanguage",
+    "title": "BSidesTLV 2025 — AvengersQueryLanguage: GraphQL Introspection to Hidden Type",
+    "date": "2026-04-22",
+    "tags": ["ctf", "web", "graphql", "bsidestlv2025"],
+    "excerpt": "The app queries a GraphQL API exposed at /graphql. Running introspection reveals a ClassifiedReport type not linked from the frontend. Querying it directly leaks the flag from its content field."
+  },
+  {
+    "slug": "bsidestlv2025-pwn-brutehush",
+    "title": "BSidesTLV 2025 — BruteHush: Character-by-Character Password Brute Force",
+    "date": "2026-04-22",
+    "tags": ["ctf", "pwn", "bsidestlv2025"],
+    "excerpt": "The binary leaks a distinct response when our input is a correct prefix of the stored password. A character-by-character brute force over printable ASCII recovers the full password one position at a time."
+  },
+  {
+    "slug": "bsidestlv2025-web-comicsmcp",
+    "title": "BSidesTLV 2025 — ComicsMCP: SSRF via MCP Universe Parameter",
+    "date": "2026-04-22",
+    "tags": ["ctf", "web", "ssrf", "bsidestlv2025"],
+    "excerpt": "An MCP tool constructs outbound URLs from user input as bstlv25-{universe}.chals.io/{name}. Injecting @ into the universe parameter redirects the request to an attacker-controlled host, leaking the flag in the HTTP headers."
+  },
+  {
+    "slug": "bsidestlv2025-web-shortcut",
+    "title": "BSidesTLV 2025 — shortcut: bcrypt 72-Byte Truncation Bypass",
+    "date": "2026-04-22",
+    "tags": ["ctf", "web", "bsidestlv2025"],
+    "excerpt": "bcrypt silently truncates input beyond 72 bytes. Sending api_version as a JSON array of one long string passes the len() == 1 check, but str() of the list is long enough to fill bcrypt's entire 72-byte budget, making expected and received hashes identical regardless of credentials."
+  },
+  {
+    "slug": "bsidestlv2025-crypto-signature-studio",
+    "title": "BSidesTLV 2025 — Signature Studio: ECDSA Signature Malleability",
+    "date": "2026-04-22",
+    "tags": ["ctf", "crypto", "bsidestlv2025"],
+    "excerpt": "The server refuses to reuse a signature, but ECDSA malleability means (r, s) and (r, n-s) are both valid signatures for the same message. Negate s to produce a second valid signature the server has never seen and collect the flag."
   }
 ]
