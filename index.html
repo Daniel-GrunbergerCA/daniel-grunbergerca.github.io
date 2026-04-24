@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DanielSec // Security Research</title>
-  <meta name="description" content="Personal security research blog — CTF writeups, CVE analysis, and more." />
+  <meta name="description" content="Personal security research blog - CTF writeups, CVE analysis, and more." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <script>!function(){var t=localStorage.getItem('theme')||'dark';if(t==='light')document.documentElement.setAttribute('data-theme','light')}()</script>
 </head>
 <body>
 
@@ -18,6 +19,7 @@
       <li><a href="index.html" class="active">~/home</a></li>
       <li><a href="about.html">~/about</a></li>
     </ul>
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme"></button>
   </nav>
 
   <header class="hero">
@@ -30,7 +32,7 @@
   </header>
 
   <main class="container">
-    <p class="section-label"><span>//</span> filter_by_tag</p>
+    <p class="section-label"><span>//</span> filter-by-tag</p>
     <div class="filter-bar" id="filter-bar"></div>
 
     <p class="section-label"><span>//</span> posts</p>
@@ -44,5 +46,7 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/theme.js"></script>
+  <script data-goatcounter="https://danielblog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

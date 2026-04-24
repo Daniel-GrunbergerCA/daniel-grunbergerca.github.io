@@ -1,4 +1,4 @@
-# HTB HTB Proxy — URL Encoding Bypass + Command Injection
+# HTB HTB Proxy - URL Encoding Bypass + Command Injection
 
 ## Overview
 

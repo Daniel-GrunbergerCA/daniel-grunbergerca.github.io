@@ -1,4 +1,4 @@
-# HTB Coffee Invocation — JNI Dynamic Class Loading with Obfuscated Verification
+# HTB Coffee Invocation - JNI Dynamic Class Loading with Obfuscated Verification
 
 The challenge binary loads two Java classes dynamically at runtime via JNI (`DefineClass`), then runs verification logic against the user's input. The name is a nod to Java - "coffee invocation" through native code.
 
@@ -6,7 +6,7 @@ The challenge binary loads two Java classes dynamically at runtime via JNI (`Def
 
 The binary sets up corrupted bytes and shorts in memory before loading the classes. Two Java class bytecodes are embedded in the binary's data section. Extracting and decompiling them reveals the verification logic.
 
-## Verify1 — Byte/Short Comparison
+## Verify1 - Byte/Short Comparison
 
 The first class (`Verify1`) compares each character of a substring of the input against a hardcoded target string `~PL{A;PL{?;:=|PIC{HzP:A;~x`:
 
@@ -37,22 +37,22 @@ The byte table maps each index `i` to `(0x51 + i) % 256`. The short table maps `
 To find the correct input character for each target character, we reverse the pipeline:
 
 ```python
-def solve_password():
-    target_string = "~PL{A;PL{?;:=|PIC{HzP:A;~x"
+def solve-password():
+    target-string = "~PL{A;PL{?;:=|PIC{HzP:A;~x"
 
-    short_table = [0] + [256 - i for i in range(1, 256)]
-    byte_table = [(0x51 + i) % 256 for i in range(256)]
+    short-table = [0] + [256 - i for i in range(1, 256)]
+    byte-table = [(0x51 + i) % 256 for i in range(256)]
 
     password = ""
-    for char in target_string:
-        target_ascii = ord(char)
-        internal_val = short_table[target_ascii]
-        input_char_code = byte_table.index(internal_val)
-        password += chr(input_char_code)
+    for char in target-string:
+        target-ascii = ord(char)
+        internal-val = short-table[target-ascii]
+        input-char-code = byte-table.index(internal-val)
+        password += chr(input-char-code)
 
     print(f"Decoded Pass: {password}")
 
-solve_password()
+solve-password()
 ```
 
 ## Verify2 - Character Mapping Tables

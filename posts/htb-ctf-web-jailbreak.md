@@ -1,4 +1,4 @@
-# HTB Jailbreak — XXE via Firmware Update XML
+# HTB Jailbreak - XXE via Firmware Update XML
 
 
 ## Analysis
@@ -24,7 +24,7 @@ Navigating to the ROM section lets us upload an XML configuration file for a fir
             <Description>Enhanced encryption for secure communication channels.</Description>
             <Checksum type="SHA-256">88d862aeb067278155c67a6d6c0f3729</Checksum>
         </Component>
-        <Component name="biometric_security">
+        <Component name="biometric-security">
             <Version>2.0.5</Version>
             <Description>Introduces facial recognition and fingerprint scanning for access control.</Description>
             <Checksum type="SHA-256">abcdef1234567890abcdef1234567890</Checksum>

@@ -1,33 +1,28 @@
-// js/main.js — Post list rendering + tag filter
-
 const postsContainer = document.getElementById('posts-list');
 const filterBar      = document.getElementById('filter-bar');
 
 let allPosts  = [];
 let activeTags = new Set(['all']);
 
-// ─── Boot ───────────────────────────────────────────────────────────────────
-
 async function init() {
   try {
     const res = await fetch('posts.json');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     allPosts = await res.json();
-    // newest first
     allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
     buildTagFilter();
     renderPosts();
   } catch (err) {
     postsContainer.innerHTML =
-      `<div class="error-msg">// error: could not load posts.json — ${escapeHtml(err.message)}</div>`;
+      `<div class="error-msg">// error: could not load posts.json - ${escapeHtml(err.message)}</div>`;
   }
 }
 
-// ─── Tag Filter ──────────────────────────────────────────────────────────────
+const ALLOWED_TAGS = new Set(['pwn', 'reversing', 'cve', 'mobile', 'web']);
 
 function collectTags() {
   const seen = new Set();
-  allPosts.forEach(p => p.tags.forEach(t => seen.add(t)));
+  allPosts.forEach(p => p.tags.forEach(t => { if (ALLOWED_TAGS.has(t)) seen.add(t); }));
   return [...seen].sort();
 }
 
@@ -67,8 +62,6 @@ function syncFilterButtons() {
   });
 }
 
-// ─── Post Rendering ──────────────────────────────────────────────────────────
-
 function renderPosts() {
   postsContainer.innerHTML = '';
 
@@ -90,6 +83,7 @@ function makePostCard(post) {
   card.className = 'post-card';
 
   const tagsHtml = post.tags
+    .filter(t => ALLOWED_TAGS.has(t))
     .map(t => `<span class="tag ${resolveTagClass(t)}">${escapeHtml(t)}</span>`)
     .join('');
 
@@ -109,11 +103,9 @@ function makePostCard(post) {
   return card;
 }
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-
 const KNOWN_TAGS = new Set([
-  'ctf','cve','htb','web','pwn','rev','linux','privesc',
-  'windows','crypto','forensics','misc','meta'
+  'ctf','cve','htb','web','pwn','rev','reversing','linux','privesc',
+  'windows','crypto','forensics','misc','meta','mobile'
 ]);
 
 function resolveTagClass(tag) {
@@ -132,7 +124,5 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 }
-
-// ─── Start ───────────────────────────────────────────────────────────────────
 
 init();

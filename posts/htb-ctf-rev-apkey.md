@@ -1,4 +1,4 @@
-# HTB APKey — Android APK RE with Frida Hooking
+# HTB APKey - Android APK RE with Frida Hooking
 
 The challenge provides an Android APK with a login screen that takes a name and password. The goal is to retrieve a hidden key inside the app.
 
@@ -34,4 +34,4 @@ Java.perform(function () {
 
 `c.b.a.g.a()` retrieves the encrypted data and `c.b.a.b.a()` decrypts it, printing the flag to the Frida console.
 
-**Flag:** `HTB{m0r3_0bfusc4t1on_w0uld_n0t_hurt}`
+**Flag:** `HTB{m0r3-0bfusc4t1on-w0uld-n0t-hurt}`

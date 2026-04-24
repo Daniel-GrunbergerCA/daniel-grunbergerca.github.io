@@ -1,4 +1,4 @@
-# HTB Flag Command — Hidden Secret Command via JS Debug
+# HTB Flag Command - Hidden Secret Command via JS Debug
 
 Opening the challenge presents a game interface. We can run commands like `start`, `help`, `audio`, etc.
 

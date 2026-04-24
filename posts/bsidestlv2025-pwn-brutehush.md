@@ -1,18 +1,18 @@
-# BSidesTLV 2025 — BruteHush: Character-by-Character Password Brute Force
+# BSidesTLV 2025 - BruteHush: Character-by-Character Password Brute Force
 
-The challenge binary reads a password from a file and compares it against our input. Reversing it in Ghidra reveals the key weakness: the comparison is length-gated, and the binary returns a distinct response — `"Hmm... I feel like you're trying something."` — when our input matches a prefix of the correct password.
+The challenge binary reads a password from a file and compares it against our input. Reversing it in Ghidra reveals the key weakness: the comparison is length-gated, and the binary returns a distinct response - `"Hmm... I feel like you're trying something."` - when our input matches a prefix of the correct password.
 
 ```
       printf("Enter password: ");
       fflush(stdout);
-      pcVar4 = fgets(local_c8,0x32,stdin);
+      pcVar4 = fgets(local-c8,0x32,stdin);
       if (pcVar4 == (char *)0x0) break;
-      sVar5 = strcspn(local_c8,"\r\n");
-      local_c8[sVar5] = '\0';
-      sVar5 = strlen(local_c8);
-      iVar1 = strncmp(local_108,local_c8,sVar5);
+      sVar5 = strcspn(local-c8,"\r\n");
+      local-c8[sVar5] = '\0';
+      sVar5 = strlen(local-c8);
+      iVar1 = strncmp(local-108,local-c8,sVar5);
       if (iVar1 == 0) {
-        if (local_c8[0] == '\0') {
+        if (local-c8[0] == '\0') {
           puts("[Gremlin]: lol, you don\'t really think I\'m so stupid");
           fflush(stdout);
         }
@@ -36,7 +36,7 @@ r = remote('0.cloud.chals.io', 10188)
 r.recvuntil(b'Enter password: ')
 
 password = ''
-chars = string.ascii_letters + string.digits + string.punctuation
+chars = string.ascii-letters + string.digits + string.punctuation
 
 while True:
     found = False

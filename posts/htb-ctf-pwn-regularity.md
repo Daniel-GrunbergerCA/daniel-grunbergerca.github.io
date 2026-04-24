@@ -1,9 +1,9 @@
-# HTB Regularity — Shellcode Injection via `jmp rsi`
+# HTB Regularity - Shellcode Injection via `jmp rsi`
 
-The challenge binary is written in pure assembly with no libc. We can use `gdb` and run the `info` command to see the entry point. Then, let's analyze the assembly:
+The challenge binary is written in pure assembly with no libc. We can use `gdb` and run the `info` command to see the entry point. Let's analyze the assembly:
 ```
 (gdb) disassemble 0x401000
-Dump of assembler code for function _start:
+Dump of assembler code for function -start:
    0x0000000000401000 <+0>:     mov    $0x1,%edi
    0x0000000000401005 <+5>:     movabs $0x402000,%rsi
    0x000000000040100f <+15>:    mov    $0x2a,%edx

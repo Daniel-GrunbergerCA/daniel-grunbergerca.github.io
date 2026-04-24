@@ -1,4 +1,4 @@
-# BSidesTLV 2025 — AvengersQueryLanguage: GraphQL Introspection to Hidden Type
+# BSidesTLV 2025 - AvengersQueryLanguage: GraphQL Introspection to Hidden Type
 
 The app has a dashboard that fetches live counts of heroes, teams, missions, and enemies. Inspecting the page source reveals it makes POST requests to a `/graphql` endpoint - a clear signal to dig into the GraphQL schema.
 
@@ -8,7 +8,7 @@ Using GraphQL introspection, we enumerate all available types:
 
 ```graphql
 query {
-  __schema {
+  --schema {
     types {
       name
     }
@@ -24,7 +24,7 @@ We first inspect its fields:
 
 ```graphql
 query {
-  __type(name: "ClassifiedReport") {
+  --type(name: "ClassifiedReport") {
     name
     fields {
       name

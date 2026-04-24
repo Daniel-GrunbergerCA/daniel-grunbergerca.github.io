@@ -1,5 +1,3 @@
-// js/post.js — Load, parse, and render a single Markdown post
-
 const params     = new URLSearchParams(window.location.search);
 const slug       = params.get('slug');
 
@@ -8,16 +6,13 @@ const dateEl    = document.getElementById('post-date');
 const tagsEl    = document.getElementById('post-tags');
 const contentEl = document.getElementById('post-content');
 
-// ─── Boot ────────────────────────────────────────────────────────────────────
-
 async function loadPost() {
   if (!slug) {
     showError('No post slug specified.');
     return;
   }
 
-  // Basic slug validation — must be alphanumeric, dashes, underscores only
-  if (!/^[a-zA-Z0-9_-]+$/.test(slug)) {
+  if (!/^[a-zA-Z0-9--]+$/.test(slug)) {
     showError('Invalid post slug.');
     return;
   }
@@ -25,7 +20,6 @@ async function loadPost() {
   contentEl.innerHTML = '<div class="loading">Loading post</div>';
 
   try {
-    // 1. Load manifest to get metadata
     const manifestRes = await fetch('posts.json');
     if (!manifestRes.ok) throw new Error(`Could not fetch post index (HTTP ${manifestRes.status}).`);
     const posts = await manifestRes.json();
@@ -33,26 +27,21 @@ async function loadPost() {
     const meta = posts.find(p => p.slug === slug);
     if (!meta) throw new Error(`Post "${escapeHtml(slug)}" not found in index.`);
 
-    // 2. Load markdown content
     const mdRes = await fetch(`posts/${slug}.md`);
     if (!mdRes.ok) throw new Error(`Could not fetch post content (HTTP ${mdRes.status}).`);
     const markdown = await mdRes.text();
 
-    // 3. Update page title
     document.title = `${meta.title} // DanielSec`;
 
-    // 4. Render metadata
     titleEl.textContent = meta.title;
     dateEl.textContent  = formatDate(meta.date);
     tagsEl.innerHTML    = meta.tags
       .map(t => `<span class="tag ${resolveTagClass(t)}">${escapeHtml(t)}</span>`)
       .join('');
 
-    // 5. Configure and render Markdown
     marked.use({ breaks: true, gfm: true });
     contentEl.innerHTML = marked.parse(markdown);
 
-    // 6. Syntax-highlight all code blocks
     contentEl.querySelectorAll('pre code').forEach(block => {
       hljs.highlightElement(block);
     });
@@ -62,15 +51,13 @@ async function loadPost() {
   }
 }
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-
 function showError(msg) {
   contentEl.innerHTML = `<div class="error-msg">// error: ${escapeHtml(msg)}</div>`;
 }
 
 const KNOWN_TAGS = new Set([
-  'ctf','cve','htb','web','pwn','rev','linux','privesc',
-  'windows','crypto','forensics','misc','meta'
+  'ctf','cve','htb','web','pwn','rev','reversing','linux','privesc',
+  'windows','crypto','forensics','misc','meta','mobile'
 ]);
 
 function resolveTagClass(tag) {
@@ -89,7 +76,5 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 }
-
-// ─── Start ───────────────────────────────────────────────────────────────────
 
 loadPost();

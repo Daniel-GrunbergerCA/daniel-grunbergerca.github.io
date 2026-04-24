@@ -1,4 +1,4 @@
-# HTB VirtuallyMad — Custom VM Reverse Engineering
+# HTB VirtuallyMad - Custom VM Reverse Engineering
 
 The challenge binary implements a simple virtual machine. We supply a string of hex-encoded opcodes and the VM executes them. The goal is to produce exactly 5 instructions that leave the registers in a specific state.
 
@@ -7,13 +7,13 @@ The challenge binary implements a simple virtual machine. We supply a string of 
 The VM context is a 56-byte struct (`0x38`) allocated with `calloc`. It holds four 32-bit registers and four pointer-sized entries pointing back to those registers:
 
 ```c
-undefined4 * init_vm(void) {
+undefined4 * init-vm(void) {
     undefined4 *vm = calloc(1, 0x38);
     // regs[0..3] initialised to 0
-    vm->reg_ptrs[0] = &vm->regs[0];
-    vm->reg_ptrs[1] = &vm->regs[1];
-    vm->reg_ptrs[2] = &vm->regs[2];
-    vm->reg_ptrs[3] = &vm->regs[3];
+    vm->reg-ptrs[0] = &vm->regs[0];
+    vm->reg-ptrs[1] = &vm->regs[1];
+    vm->reg-ptrs[2] = &vm->regs[2];
+    vm->reg-ptrs[3] = &vm->regs[3];
     return vm;
 }
 ```
@@ -43,14 +43,14 @@ if (regs[0] == 0x200 &&
     regs[2] == 0xFFFFFFFF &&
     regs[3] == 0 &&
     vm->extra == 0x10000000 &&
-    instruction_count == 5)
+    instruction-count == 5)
 ```
 
 ## Crafting the Payload
 
 - **reg[0] = 0x200**: `ADD reg[0], 0x100` twice (max immediate is `0x100`)
 - **reg[1] = 0xFFFFFFFF**: `SUB reg[1], 1` (wraps to −1 for an unsigned 32-bit value)
-- **reg[2] = 0xFFFFFFFF**: `MOV reg[2], reg[1]` — copy from reg[1] using mode 1
+- **reg[2] = 0xFFFFFFFF**: `MOV reg[2], reg[1]` - copy from reg[1] using mode 1
 - **vm->extra = 0x10000000**: opcode `0x04` with destination `0x13` and value `0x000` triggers an internal shift that produces `0x10000000`
 
 Encoded as the final input string:

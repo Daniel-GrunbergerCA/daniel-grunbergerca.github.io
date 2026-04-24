@@ -7,9 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <!-- highlight.js (atom-one-dark theme) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <script>!function(){var t=localStorage.getItem('theme')||'dark';if(t==='light')document.documentElement.setAttribute('data-theme','light')}()</script>
 </head>
 <body>
 
@@ -19,6 +19,7 @@
       <li><a href="index.html">~/home</a></li>
       <li><a href="about.html">~/about</a></li>
     </ul>
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme"></button>
   </nav>
 
   <main class="container">
@@ -37,13 +38,13 @@
   </main>
 
   <footer>
-    <span class="accent">~</span> no frameworks were harmed in the making of this blog
+    <span class="accent">~</span>
   </footer>
 
-  <!-- marked.js for Markdown parsing -->
   <script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js"></script>
-  <!-- highlight.js for syntax highlighting -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="js/post.js"></script>
+  <script src="js/theme.js"></script>
+  <script data-goatcounter="https://danielblog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
