@@ -84,6 +84,15 @@
     "excerpt": "A classic ret2win: enter the correct door to trigger a buffer overflow, overwrite the return address to escape-plan, and align the stack with a ret gadget to capture the flag."
   },
   {
+    "slug": "htb-ctf-rev-cyberpsychosis",
+    "title": "HTB Cyberpsychosis - Linux Rootkit Kernel Module Analysis",
+    "date": "2026-05-07",
+    "tags": [
+      "reversing"
+    ],
+    "excerpt": "A Linux kernel module rootkit hides itself by unlinking from the module list and hooks the kill syscall to respond to custom signals: signal 46 toggles module visibility, signal 64 escalates the calling process to root via prepare_creds, and signal 31 flips a process flag."
+  },
+  {
     "slug": "htb-ctf-rev-apkey",
     "title": "HTB APKey - Android APK RE with Frida Hooking",
     "date": "2025-04-03",
