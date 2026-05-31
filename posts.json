@@ -1,5 +1,14 @@
 [
   {
+    "slug": "htb-ctf-rev-partial-encryption",
+    "title": "HTB Partial Encryption - Packer Behavior",
+    "date": "2026-05-31",
+    "tags": [
+      "reversing"
+    ],
+    "excerpt": "An MSVC binary uses hardware AES instructions to decrypt each function's code into VirtualAlloc'd memory at runtime before executing it. Identifying the decrypt-then-execute stub in Ghidra and breakpointing the final call in IDA dumps all decrypted functions, which implement a character-by-character flag comparison."
+  },
+  {
     "slug": "htb-ctf-web-htb-proxy",
     "title": "HTB HTB Proxy - URL Encoding Bypass + Command Injection",
     "date": "2025-07-31",
